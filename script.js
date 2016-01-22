@@ -8,7 +8,7 @@ var Motion = function(options) {
     // active duration of relay in milliseconds
     this.activeDuration = 5000;
 
-    // Set the relay pin to write instead of read
+    // Set the relay pin to write instead of read ( exports pin )
     gpio.open(options.relayPin, "output", function(err) {
 
         // Setup the motion detection on our pin
