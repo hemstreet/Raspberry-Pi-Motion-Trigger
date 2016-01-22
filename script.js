@@ -8,13 +8,18 @@ var Motion = function(options) {
     // active duration of relay in milliseconds
     this.activeDuration = 5000;
 
-    // Setup the motion detection on our pin
-    this.checkForMotion(options.motionSensorPin, options.relayPin);
+    // Set the relay pin to write instead of read
+    gpio.open(options.relayPin, "output", function(err) {
+
+        // Setup the motion detection on our pin
+        this.checkForMotion(options.motionSensorPin, options.relayPin);
+
+    }.bind(this));
 };
 
 Motion.prototype.writePin = function(pin, status) {
 
-    // Write a value to a pin with our passed status
+     //Write a value to a pin with our passed status
     gpio.write(pin, status, function() {
         console.log('Writing to pin', pin, 'with the value of', status)
     });
@@ -57,6 +62,7 @@ Motion.prototype.checkForMotion = function(motionSensorPin, relayPin) {
 
 };
 
+// Kick off our motion sensor relay!
 new Motion({
     motionSensorPin: 11,
     relayPin: 7
