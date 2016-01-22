@@ -1,0 +1,11 @@
+{
+  "name": "raspberry-pi-motion-trigger",
+  "version": "0.0.1",
+  "description": "Raspberry Pi motion sensor",
+  "main": "script.js",
+  "author": "Jon Hemstreet",
+  "license": "ISC",
+  "dependencies": {
+    "pi-gpio": "0.0.8"
+  }
+}
