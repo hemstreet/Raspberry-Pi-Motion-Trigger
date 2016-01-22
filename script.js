@@ -14,7 +14,10 @@ var Motion = function(options) {
 
 Motion.prototype.writePin = function(pin, status) {
 
-    console.log('write to pin', pin, status);
+    // Write a value to a pin with our passed status
+    gpio.write(pin, status, function() {
+        console.log('Writing to pin', pin, 'with the value of', status)
+    });
 
 };
 
@@ -32,20 +35,14 @@ Motion.prototype.checkForMotion = function(motionSensorPin, relayPin) {
             // Turn the status to on
             this.currentStatus = true;
 
-            console.log('turning on!');
-
             // Turn on our pin
             this.writePin(relayPin, 1);
-
 
             // We will call this after our activeDuration is over
             setTimeout(function() {
 
-                console.log('turning off!');
-
                 // Turn the pin off
                 this.writePin(relayPin, 0);
-
 
                 // Turn the status to off
                 this.currentStatus = false;
@@ -62,5 +59,5 @@ Motion.prototype.checkForMotion = function(motionSensorPin, relayPin) {
 
 new Motion({
     motionSensorPin: 11,
-    relayPin: 13
+    relayPin: 7
 });
